@@ -2,25 +2,27 @@ package main
 
 import (
 	"fmt"
-	"math"
+	"math" // For using math.MaxInt32
 )
 
+// Function that take in parameters graph, start node and end node
+// And returns the shortest distance from start node to end node
 func dijkstra(graph [][]int, start int, end int) []int {
-	n := len(graph)
-	dist := make([]int, n)
-	visited := make([]bool, n)
+	n := len(graph)            // Number of nodes in the graph
+	dist := make([]int, n)     // Array to store the shortest distance from start node to all other nodes
+	visited := make([]bool, n) // Array to keep track of visited nodes
 
 	for i := 0; i < n; i++ {
 		dist[i] = math.MaxInt32
 		visited[i] = false
 	}
 
-	dist[start] = 0
+	dist[start] = 0 // Distance from start node to itself is 0
 
 	for count := 0; count < n-1; count++ {
-		u := -1
+		u := -1 // Initialize u to -1
 
-		for i := 0; i < n; i++ {
+		for i := 0; i < n; i++ { // Find the node with the shortest distance from the set of nodes not yet visited
 			if !visited[i] && (u == -1 || dist[i] < dist[u]) {
 				u = i
 			}
@@ -32,40 +34,24 @@ func dijkstra(graph [][]int, start int, end int) []int {
 
 		visited[u] = true
 
-		for v := 0; v < n; v++ {
+		for v := 0; v < n; v++ { // Update the distance of the nodes adjacent to u
 			if graph[u][v] != 0 && dist[u]+graph[u][v] < dist[v] {
-				dist[v] = dist[u] + graph[u][v]
+				dist[v] = dist[u] + graph[u][v] // Update the distance of node v
 			}
 		}
 	}
 
-	return dist
+	return dist // Return the shortest distance from start node to all other nodes
 }
 
 func main() {
-	// graph := [][]int{
-	// 	{0, 7, 5, 2, 0, 0},
-	// 	{7, 0, 0, 0, 3, 0},
-	// 	{5, 0, 0, 10, 4, 0},
-	// 	{2, 0, 10, 0, 0, 2},
-	// 	{0, 3, 4, 0, 0, 6},
-	// 	{0, 8, 0, 2, 6, 0},
-	// }
-
-	// Big Matrix : 12x12
 	graph := [][]int{
-		{0, 6, 7, 2, 5, 1, 7, 4, 3, 2, 6, 7},
-		{6, 0, 7, 3, 7, 2, 4, 1, 5, 3, 6, 5},
-		{7, 7, 0, 1, 4, 6, 3, 2, 4, 5, 4, 3},
-		{2, 3, 1, 0, 4, 7, 1, 7, 4, 6, 2, 5},
-		{5, 7, 4, 4, 0, 1, 2, 7, 3, 5, 3, 6},
-		{1, 2, 6, 7, 1, 0, 4, 5, 3, 2, 1, 4},
-		{7, 4, 3, 1, 2, 4, 0, 6, 7, 3, 5, 2},
-		{4, 1, 2, 7, 7, 5, 6, 0, 3, 1, 4, 3},
-		{3, 5, 4, 4, 3, 3, 7, 3, 0, 2, 4, 1},
-		{2, 3, 5, 6, 5, 2, 3, 1, 2, 0, 5, 7},
-		{6, 6, 4, 2, 3, 1, 5, 4, 4, 5, 0, 6},
-		{7, 5, 3, 5, 6, 4, 2, 3, 1, 7, 6, 0},
+		{0, 7, 5, 2, 0, 0},
+		{7, 0, 0, 0, 3, 0},
+		{5, 0, 0, 10, 4, 0},
+		{2, 0, 10, 0, 0, 2},
+		{0, 3, 4, 0, 0, 6},
+		{0, 8, 0, 2, 6, 0},
 	}
 
 	fmt.Println("The given nodes are:", graph)
