@@ -74,15 +74,17 @@ func dijkstra(graph [][]node, start int, end int) []int {
 
 func main() {
 	graph := [][]node{
-		{{1, 5}, {3, 9}},
-		{{0, 5}, {2, 2}},
-		{{1, 2}, {3, 3}, {4, 7}},
-		{{0, 9}, {2, 3}},
-		{{2, 7}},
+		{{1, 7}, {2, 5}, {3, 2}},
+		{{0, 7}, {4, 3}},
+		{{0, 5}, {3, 10}, {4, 4}},
+		{{0, 2}, {2, 10}, {5, 2}},
+		{{1, 3}, {2, 4}, {5, 6}},
+		{{1, 8}, {3, 2}, {4, 6}},
 	}
+
 	fmt.Println("The given nodes are:", graph)
-	start := 0
-	end := 4
+	start := 2
+	end := 3
 	dist := dijkstra(graph, start, end)
 	fmt.Printf("Shortest path from node %d to %d: %d\n", start, end, dist[end])
 }
