@@ -1,27 +1,46 @@
-package main
+package hexgames
 
 import "testing"
 
-func BenchmarkTt(b *testing.B) {
+var grid = [][]int{
+	{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+	{0, 0, 1, 0, 0, 2, 0, 0, 0, 0},
+	{0, 2, 0, 1, 2, 0, 0, 0, 0, 0},
+	{0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+	{0, 2, 0, 1, 0, 0, 0, 0, 0, 0},
+	{0, 0, 0, 0, 2, 0, 0, 0, 2, 0},
+	{0, 1, 0, 0, 0, 0, 0, 1, 0, 0},
+	{0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
+	{0, 2, 0, 0, 0, 2, 0, 0, 0, 0},
+	{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+}
+
+func BenchmarkGridToGraphOptiIf(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Tt()
+		GridToGraphOptiIf(grid)
 	}
 }
 
-func BenchmarkTt2(b *testing.B) {
+func BenchmarkGridToGraph(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Tt2()
+		GridToGraph(grid)
 	}
 }
 
-func BenchmarkT3(b *testing.B) {
+func BenchmarkGridToMinDist(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		T3()
+		GridToMinDist(grid)
 	}
 }
 
-func BenchmarkT4(b *testing.B) {
+func BenchmarkGridToMinDistWithGoRoutine(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		T4()
+		GridToMinDistWithGoRoutine(grid)
+	}
+}
+
+func BenchmarkGridToMinDistWithGoRoutineOptimisation(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		GridToMinDistWithGoRoutineOptimisation(grid)
 	}
 }
