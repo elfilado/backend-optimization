@@ -1,7 +1,7 @@
 go 1.21.6
 
 use (
+	.
+	./dijkstra/adjacency-list
 	./dijkstra/adjacency-matrix
-    ./dijkstra/adjacency-list
-    ./dijkstra/binary-heap
 )

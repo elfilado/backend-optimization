@@ -1,7 +1,10 @@
+// The main file for the Hex Games project.
+
 package main
 
 import (
 	"fmt"
+
 	"github.com/elfilado/backend-optimization/hexgames"
 )
 
